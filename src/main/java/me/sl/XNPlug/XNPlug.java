@@ -5,6 +5,7 @@ import me.sl.XNPlug.Functions.Afk.Afk;
 import me.sl.XNPlug.Functions.Afk.AfkExpansion;
 import me.sl.XNPlug.Functions.FlyCommand.FlyCommand;
 import me.sl.XNPlug.Functions.GetIP.GetIP;
+import me.sl.XNPlug.Functions.LagCommand.LagCommand;
 import me.sl.XNPlug.Functions.ListCommand.ListCommand;
 import me.sl.XNPlug.Functions.SuicideCommand.SuicideCommand;
 import org.bukkit.Bukkit;
@@ -13,6 +14,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class XNPlug extends JavaPlugin {
     @Getter
     private static XNPlug instance;
+
+    @Getter
+    private static long enableTime;
 
     @Getter
     private static Afk afk;
@@ -24,6 +28,8 @@ public final class XNPlug extends JavaPlugin {
     private static GetIP getIP;
     @Getter
     private static SuicideCommand suicideCommand;
+    @Getter
+    private static LagCommand lagCommand;
 
     @Override
     public void onEnable() {
@@ -33,6 +39,7 @@ public final class XNPlug extends JavaPlugin {
         getLogger().info("初始化 XNPlug...");
 
         instance = this;
+        enableTime = System.currentTimeMillis();
 
         afk = new Afk(this, getConfig().getLong("afk-threshold-seconds", 300));
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
@@ -55,6 +62,9 @@ public final class XNPlug extends JavaPlugin {
 
         suicideCommand = new SuicideCommand(this);
         getLogger().info("XNPlug.suicide 已启动");
+
+        lagCommand = new LagCommand(this);
+        getLogger().info("XNPlug.lag 已启动");
 
         getLogger().info("XNPlug 加载完成！");
     }

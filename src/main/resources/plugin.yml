@@ -23,3 +23,9 @@ commands:
   suicide:
     description: 自杀
     usage: /suicide
+  lag:
+    description: 查看服务器状态
+    usage: /lag
+  gc:
+    description: 查看服务器状态
+    usage: /gc
