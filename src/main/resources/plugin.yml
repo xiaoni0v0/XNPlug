@@ -4,3 +4,8 @@ version: '${version}'
 main: me.sl.XNPlug.XNPlug
 api-version: '1.21.11'
 load: POSTWORLD
+
+commands:
+  afk:
+    description: Toggle AFK mode
+    usage: /afk

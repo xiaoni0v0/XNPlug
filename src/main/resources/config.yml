@@ -1,0 +1,2 @@
+# 空闲多少秒后自动进入AFK模式
+afk-threshold-seconds: 300
