@@ -2,7 +2,7 @@ name: XNPlug
 version: '${version}'
 
 main: me.sl.XNPlug.XNPlug
-api-version: '1.21.11'
+api-version: '1.21.8'
 load: POSTWORLD
 
 softdepend: [ PlaceholderAPI ]
