@@ -3,16 +3,18 @@ package me.sl.XNPlug;
 import lombok.Getter;
 import me.sl.XNPlug.Functions.Afk.Afk;
 import me.sl.XNPlug.Functions.Afk.AfkExpansion;
+import me.sl.XNPlug.Functions.ListCommand.ListCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class XNPlug extends JavaPlugin {
-
     @Getter
     private static XNPlug instance;
 
     @Getter
     private static Afk afk;
+    @Getter
+    private static ListCommand listCommand;
 
     @Override
     public void onEnable() {
@@ -31,8 +33,10 @@ public final class XNPlug extends JavaPlugin {
             getLogger().warning("未找到 PlaceholderAPI 插件，该功能将不可用！");
         }
         afk.start();
-
         getLogger().info("XNPlug.afk 已启动");
+
+        listCommand = new ListCommand(this);
+        getLogger().info("XNPlug.list 已启动");
 
         getLogger().info("XNPlug 已启动");
     }
