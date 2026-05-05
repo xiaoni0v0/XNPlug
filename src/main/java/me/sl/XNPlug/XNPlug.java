@@ -6,6 +6,7 @@ import me.sl.XNPlug.Functions.Afk.AfkExpansion;
 import me.sl.XNPlug.Functions.FlyCommand.FlyCommand;
 import me.sl.XNPlug.Functions.GetIP.GetIP;
 import me.sl.XNPlug.Functions.ListCommand.ListCommand;
+import me.sl.XNPlug.Functions.SuicideCommand.SuicideCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +22,8 @@ public final class XNPlug extends JavaPlugin {
     private static FlyCommand flyCommand;
     @Getter
     private static GetIP getIP;
+    @Getter
+    private static SuicideCommand suicideCommand;
 
     @Override
     public void onEnable() {
@@ -50,7 +53,10 @@ public final class XNPlug extends JavaPlugin {
         getIP = new GetIP(this);
         getLogger().info("XNPlug.getip 已启动");
 
-        getLogger().info("XNPlug 已启动");
+        suicideCommand = new SuicideCommand(this);
+        getLogger().info("XNPlug.suicide 已启动");
+
+        getLogger().info("XNPlug 加载完成！");
     }
 
     @Override

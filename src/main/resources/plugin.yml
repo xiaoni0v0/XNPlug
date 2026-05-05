@@ -20,3 +20,6 @@ commands:
   getip:
     description: 查看玩家 IP 地址
     usage: /getip [玩家名]，若不指定则默认为你自己
+  suicide:
+    description: 自杀
+    usage: /suicide
