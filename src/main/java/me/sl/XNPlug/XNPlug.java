@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.sl.XNPlug.Functions.Afk.Afk;
 import me.sl.XNPlug.Functions.Afk.AfkExpansion;
 import me.sl.XNPlug.Functions.FlyCommand.FlyCommand;
+import me.sl.XNPlug.Functions.GetIP.GetIP;
 import me.sl.XNPlug.Functions.ListCommand.ListCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +19,8 @@ public final class XNPlug extends JavaPlugin {
     private static ListCommand listCommand;
     @Getter
     private static FlyCommand flyCommand;
+    @Getter
+    private static GetIP getIP;
 
     @Override
     public void onEnable() {
@@ -43,6 +46,9 @@ public final class XNPlug extends JavaPlugin {
 
         flyCommand = new FlyCommand(this);
         getLogger().info("XNPlug.fly 已启动");
+
+        getIP = new GetIP(this);
+        getLogger().info("XNPlug.getip 已启动");
 
         getLogger().info("XNPlug 已启动");
     }
