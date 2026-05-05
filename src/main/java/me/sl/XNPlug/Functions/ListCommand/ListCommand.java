@@ -13,12 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public record ListCommand(XNPlug plugin) implements CommandExecutor {
-    @Getter
-    private static ListCommand instance;
 
     public ListCommand(XNPlug plugin) {
         this.plugin = plugin;
-        instance = this;
 
         Objects.requireNonNull(plugin.getCommand("list")).setExecutor(this);
     }

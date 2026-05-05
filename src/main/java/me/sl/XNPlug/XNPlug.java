@@ -3,6 +3,7 @@ package me.sl.XNPlug;
 import lombok.Getter;
 import me.sl.XNPlug.Functions.Afk.Afk;
 import me.sl.XNPlug.Functions.Afk.AfkExpansion;
+import me.sl.XNPlug.Functions.FlyCommand.FlyCommand;
 import me.sl.XNPlug.Functions.ListCommand.ListCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,8 @@ public final class XNPlug extends JavaPlugin {
     private static Afk afk;
     @Getter
     private static ListCommand listCommand;
+    @Getter
+    private static FlyCommand flyCommand;
 
     @Override
     public void onEnable() {
@@ -37,6 +40,9 @@ public final class XNPlug extends JavaPlugin {
 
         listCommand = new ListCommand(this);
         getLogger().info("XNPlug.list 已启动");
+
+        flyCommand = new FlyCommand(this);
+        getLogger().info("XNPlug.fly 已启动");
 
         getLogger().info("XNPlug 已启动");
     }

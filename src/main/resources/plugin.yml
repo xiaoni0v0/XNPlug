@@ -12,3 +12,6 @@ commands:
   list:
     description: 列出所有在线玩家
     usage: /list
+  fly:
+    description: 让你飞起来！
+    usage: /fly
