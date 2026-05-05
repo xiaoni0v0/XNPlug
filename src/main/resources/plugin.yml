@@ -5,6 +5,8 @@ main: me.sl.XNPlug.XNPlug
 api-version: '1.21.11'
 load: POSTWORLD
 
+softdepend: [ PlaceholderAPI ]
+
 commands:
   afk:
     description: 切换 AFK 状态

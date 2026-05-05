@@ -4,3 +4,7 @@
 
 1. AFK
 2. fly
+
+## 软前置
+
+1. PlaceholderAPI
