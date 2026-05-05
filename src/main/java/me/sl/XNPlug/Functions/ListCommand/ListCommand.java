@@ -22,15 +22,11 @@ public record ListCommand(XNPlug plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        StringBuilder msg = new StringBuilder(64);
-        msg.append(ChatColor.GOLD);
-        msg.append("当前有 ");
-        msg.append(ChatColor.RED);
-        msg.append(Bukkit.getOnlinePlayers().size());
-        msg.append(ChatColor.GOLD);
-        msg.append(" 人在线。\nlist");
-        msg.append(ChatColor.WHITE);
-        msg.append(": ");
+        StringBuilder msg = new StringBuilder(ChatColor.GOLD + "当前有 "
+                + ChatColor.RED + Bukkit.getOnlinePlayers().size()
+                + ChatColor.GOLD + " 人在线。\n"
+                + ChatColor.GOLD + "list"
+                + ChatColor.WHITE + ": ");
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (XNPlug.getAfk().isAfk(player.getUniqueId())) {
                 msg.append(ChatColor.GRAY);
