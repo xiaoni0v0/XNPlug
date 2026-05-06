@@ -8,6 +8,7 @@ import me.sl.XNPlug.Functions.GetIP.GetIP;
 import me.sl.XNPlug.Functions.LagCommand.LagCommand;
 import me.sl.XNPlug.Functions.ListCommand.ListCommand;
 import me.sl.XNPlug.Functions.SuicideCommand.SuicideCommand;
+import me.sl.XNPlug.Functions.WhoCommand.WhoCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +31,8 @@ public final class XNPlug extends JavaPlugin {
     private static SuicideCommand suicideCommand;
     @Getter
     private static LagCommand lagCommand;
+    @Getter
+    private static WhoCommand whoCommand;
 
     @Override
     public void onEnable() {
@@ -65,6 +68,9 @@ public final class XNPlug extends JavaPlugin {
 
         lagCommand = new LagCommand(this);
         getLogger().info("XNPlug.lag 已启动");
+
+        whoCommand = new WhoCommand(this);
+        getLogger().info("XNPlug.who 已启动");
 
         getLogger().info("XNPlug 加载完成！");
     }

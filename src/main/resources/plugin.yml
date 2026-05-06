@@ -29,3 +29,9 @@ commands:
   gc:
     description: 查看服务器状态
     usage: /gc
+  who:
+    description: 查看某玩家的信息
+    usage: /who <玩家名>
+  whois:
+    description: 查看某玩家的信息
+    usage: /whois <玩家名>
