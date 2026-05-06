@@ -3,6 +3,7 @@ package me.sl.XNPlug.Functions.LagCommand;
 import me.sl.XNPlug.XNPlug;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -46,11 +47,20 @@ public record LagCommand(XNPlug plugin) implements CommandExecutor {
                 mspt < 50 ? ChatColor.YELLOW :
                 ChatColor.RED).append(String.format("%.2f", mspt)).append("\n");
 
-        msg.append(ChatColor.GOLD + "内存占用：" + ChatColor.WHITE)
+        msg.append(ChatColor.GOLD + "瞬时内存占用：" + ChatColor.WHITE)
                 .append((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024)
                 .append(" MB / ")
                 .append(Runtime.getRuntime().totalMemory() / 1024 / 1024)
-                .append(" MB");
+                .append(" MB\n");
+
+        // 遍历所有世界
+        for (World world : Bukkit.getWorlds()) {
+            msg.append(ChatColor.GOLD + "世界 " + ChatColor.RED + world.getName())
+                    .append(ChatColor.GOLD + " 类型: " + ChatColor.RED + world.getEnvironment().name())
+                    .append(ChatColor.GOLD + " 区块数量: " + ChatColor.RED + world.getLoadedChunks().length)
+                    .append(ChatColor.GOLD + " 实体数量: " + ChatColor.RED + world.getEntities().size())
+                    .append("\n");
+        }
 
         sender.sendMessage(msg.toString());
 
