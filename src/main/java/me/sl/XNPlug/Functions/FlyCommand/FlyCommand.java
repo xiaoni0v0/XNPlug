@@ -18,6 +18,11 @@ public record FlyCommand(XNPlug plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+        if (!sender.isOp()) {
+            sender.sendMessage("§e？你是 op 嘛就想 fly 啊？");
+            return true;
+        }
+
         // 1. 检查是否为玩家
         if (!(sender instanceof Player player)) {
             sender.sendMessage("§c只有玩家才能用 /fly");

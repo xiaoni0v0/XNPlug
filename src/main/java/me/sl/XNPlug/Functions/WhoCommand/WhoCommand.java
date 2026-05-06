@@ -24,6 +24,11 @@ public record WhoCommand(XNPlug plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        if (!sender.isOp()) {
+            sender.sendMessage("§e？你是 op 嘛就想看别人资料啊？");
+            return true;
+        }
+
         if (args.length == 0) {
             sender.sendMessage("§c请指定玩家");
             return true;
@@ -48,6 +53,7 @@ public record WhoCommand(XNPlug plugin) implements CommandExecutor {
                 §6- 坐标: §f(%s, %d, %d, %d)
                 §6- 游戏时长: §f%d 时 %d 分
                 §6- 游戏模式: §f%s
+                §6- op 权限: %s
                 §6- 最后一次登录: §f%s
                 §6- IP 地址: §f%s
                 §6- 地理位置: §f%s
@@ -65,6 +71,7 @@ public record WhoCommand(XNPlug plugin) implements CommandExecutor {
                         mode.equals("CREATIVE") ? "创造" :
                         mode.equals("ADVENTURE") ? "冒险" :
                         mode.equals("SPECTATOR") ? "旁观" : mode,
+                player.isOp() ? "§a是" : "§c否",
                 Utils.formatTime(player.getLastLogin()),
                 GetIP.getIP(player),
                 GetIP.getExactLocation(player)
