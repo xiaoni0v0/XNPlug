@@ -35,3 +35,6 @@ commands:
   whois:
     description: 查看某玩家的信息
     usage: /whois <玩家名>
+  info:
+    description: 查看某玩家的信息
+    usage: /info <玩家名>

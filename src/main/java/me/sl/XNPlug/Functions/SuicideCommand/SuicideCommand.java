@@ -2,7 +2,6 @@ package me.sl.XNPlug.Functions.SuicideCommand;
 
 import me.sl.XNPlug.XNPlug;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,11 +20,11 @@ public record SuicideCommand(XNPlug plugin) implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("只有玩家才能用 /suicide");
+            sender.sendMessage("§c只有玩家才能用 /suicide");
             return true;
         }
 
-        Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + " 结束了自己的生命。");
+        Bukkit.broadcastMessage("§6%s 结束了自己的生命。".formatted(player.getName()));
         player.setHealth(0);
 
         return true;

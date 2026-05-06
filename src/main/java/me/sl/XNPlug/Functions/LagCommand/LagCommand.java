@@ -2,7 +2,6 @@ package me.sl.XNPlug.Functions.LagCommand;
 
 import me.sl.XNPlug.XNPlug;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,44 +21,44 @@ public record LagCommand(XNPlug plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        StringBuilder msg = new StringBuilder(ChatColor.GOLD + "已运行时间：" + ChatColor.WHITE);
+
+        StringBuilder msg = new StringBuilder("§6已运行时间: §f");
+
         long time = System.currentTimeMillis() - XNPlug.getEnableTime();
-        if (time > 1000 * 86400) msg.append(time / (1000 * 86400)).append(" 日 ");
-        if (time > 1000 * 3600) msg.append((time % (1000 * 86400)) / (1000 * 3600)).append(" 时 ");
-        if (time > 1000 * 60) msg.append((time % (1000 * 3600)) / (1000 * 60)).append(" 分 ");
+        if (time >= 1000 * 86400) msg.append(time / (1000 * 86400)).append(" 日 ");
+        if (time >= 1000 * 3600) msg.append((time % (1000 * 86400)) / (1000 * 3600)).append(" 时 ");
+        if (time >= 1000 * 60) msg.append((time % (1000 * 3600)) / (1000 * 60)).append(" 分 ");
         msg.append((time % (1000 * 60)) / 1000).append(" 秒\n");
 
-        msg.append(ChatColor.GOLD + "TPS=");
+        msg.append("§6TPS=");
         for (double tps : Bukkit.getServer().getTPS()) {
-            msg.append(tps > 20 ? ChatColor.AQUA :
-                            tps >= 18 ? ChatColor.GREEN :
-                            tps >= 16 ? ChatColor.YELLOW :
-                            ChatColor.RED)
-                    .append(String.format("%.3f", tps)) // 显示小数点后 3 位
-                    .append(" ");
+            msg.append("%s%.3f ".formatted(
+                    tps >= 20 ? "§b" :
+                            tps >= 18 ? "§a" :
+                            tps >= 16 ? "§e" : "§c",
+                    tps
+            ));
         }
         msg.append("\n");
 
-        msg.append(ChatColor.GOLD + "MSPT=");
         double mspt = Arrays.stream(Bukkit.getServer().getTickTimes()).average().orElse(0.0) / 1000000;
-        msg.append(mspt < 5 ? ChatColor.AQUA :
-                mspt < 40 ? ChatColor.GREEN :
-                mspt < 50 ? ChatColor.YELLOW :
-                ChatColor.RED).append(String.format("%.2f", mspt)).append("\n");
-
-        msg.append(ChatColor.GOLD + "瞬时内存占用：" + ChatColor.WHITE)
-                .append((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024)
-                .append(" MB / ")
-                .append(Runtime.getRuntime().totalMemory() / 1024 / 1024)
-                .append(" MB\n");
+        msg.append("§6MSPT=%s%.2f\n§6瞬时内存占用: §f%d MB / %d MB\n".formatted(
+                mspt < 5 ? "§b" :
+                        mspt < 40 ? "§a" :
+                        mspt < 50 ? "§e" : "§c",
+                mspt,
+                (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024,
+                Runtime.getRuntime().totalMemory() / 1024 / 1024
+        ));
 
         // 遍历所有世界
         for (World world : Bukkit.getWorlds()) {
-            msg.append(ChatColor.GOLD + "世界 " + ChatColor.RED + world.getName())
-                    .append(ChatColor.GOLD + " 类型: " + ChatColor.RED + world.getEnvironment().name())
-                    .append(ChatColor.GOLD + " 区块数量: " + ChatColor.RED + world.getLoadedChunks().length)
-                    .append(ChatColor.GOLD + " 实体数量: " + ChatColor.RED + world.getEntities().size())
-                    .append("\n");
+            msg.append("§6世界 §c%s§6 类型: §c%s§6 区块数量: §c%d§6 实体数量: §c%d\n".formatted(
+                    world.getName(),
+                    world.getEnvironment().name(),
+                    world.getLoadedChunks().length,
+                    world.getEntities().size()
+            ));
         }
 
         sender.sendMessage(msg.toString());

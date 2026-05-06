@@ -3,7 +3,6 @@ package me.sl.XNPlug.Functions.Afk;
 import lombok.Getter;
 import me.sl.XNPlug.XNPlug;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -66,7 +65,7 @@ public class Afk {
             } else if (isCurrentlyAfk && (now - lastActive) < thresholdSeconds * 1000) {
                 // 如果AFK期间移动了，自动退出AFK（由事件触发重置计时，这里只需判断状态）
                 // 实际上事件中我们会调用 updateActivity() 并 remove AFK，这里不用重复处理
-                // 但为了防止事件未触发（比如AFK后别人传送他），就再检查一下：
+                // 但为了防止事件未触发（比如AFK后别人传送他），就再检查一下
                 // 已经满足非空闲条件，但仍是AFK状态 → 强制退出AFK
                 setAfk(player, false);
             }
@@ -90,7 +89,6 @@ public class Afk {
         }
     }
 
-    // 设置AFK状态，sendMessage控制是否广播，updateTab控制是否更新Tab列表
     public void setAfk(Player player, boolean afk) {
         UUID uuid = player.getUniqueId();
         boolean wasAfk = isAfk(uuid);
@@ -99,11 +97,10 @@ public class Afk {
         afkStatus.put(uuid, afk);
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (player.equals(p)) {
-                p.sendMessage(ChatColor.GRAY.toString() + ChatColor.ITALIC + "* 你" + (afk ? "暂时离开了" : "回来了"));
-            } else {
-                p.sendMessage(ChatColor.GRAY.toString() + ChatColor.ITALIC + "* " + player.getName() + (afk ? " 暂时离开了" : " 回来了"));
-            }
+            p.sendMessage("§7§o* %s %s".formatted(
+                    player.equals(p) ? "你" : player.getName(),
+                    afk ? "暂时离开了" : "回来了"
+            ));
         }
     }
 

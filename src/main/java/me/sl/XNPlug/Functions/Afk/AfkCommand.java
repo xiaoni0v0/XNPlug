@@ -11,7 +11,7 @@ public record AfkCommand(Afk afk) implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (!(sender instanceof Player p)) {
-            sender.sendMessage("只有玩家才能用 /afk");
+            sender.sendMessage("§c只有玩家才能用 /afk");
             return true;
         }
 
