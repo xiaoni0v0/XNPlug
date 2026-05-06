@@ -25,8 +25,8 @@ public record SuicideCommand(XNPlug plugin) implements CommandExecutor {
             return true;
         }
 
-        player.setHealth(0);
         Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + " 结束了自己的生命。");
+        player.setHealth(0);
 
         return true;
     }
