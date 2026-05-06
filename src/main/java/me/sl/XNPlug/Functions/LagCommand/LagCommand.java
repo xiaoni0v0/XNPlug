@@ -31,7 +31,7 @@ public record LagCommand(XNPlug plugin) implements CommandExecutor {
         msg.append((time % (1000 * 60)) / 1000).append(" 秒\n");
 
         msg.append("§6TPS=");
-        for (double tps : Bukkit.getServer().getTPS()) {
+        for (double tps : Bukkit.getTPS()) {
             msg.append("%s%.3f ".formatted(
                     tps >= 20 ? "§b" :
                             tps >= 18 ? "§a" :
@@ -41,7 +41,7 @@ public record LagCommand(XNPlug plugin) implements CommandExecutor {
         }
         msg.append("\n");
 
-        double mspt = Arrays.stream(Bukkit.getServer().getTickTimes()).average().orElse(0.0) / 1000000;
+        double mspt = Arrays.stream(Bukkit.getTickTimes()).average().orElse(0.0) / 1000000;
         msg.append("§6MSPT=%s%.2f\n§6瞬时内存占用: §f%d MB / %d MB\n".formatted(
                 mspt < 5 ? "§b" :
                         mspt < 40 ? "§a" :

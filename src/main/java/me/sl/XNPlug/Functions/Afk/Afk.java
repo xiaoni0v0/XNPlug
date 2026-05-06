@@ -25,7 +25,7 @@ public class Afk {
         this.thresholdSeconds = thresholdSeconds;
 
         // 注册监听器
-        plugin.getServer().getPluginManager().registerEvents(new AfkListener(this), plugin);
+        Bukkit.getPluginManager().registerEvents(new AfkListener(this), plugin);
 
         // 注册命令
         Objects.requireNonNull(plugin.getCommand("afk")).setExecutor(new AfkCommand(this));

@@ -1,6 +1,7 @@
 package me.sl.XNPlug.Functions.GetIP;
 
 import me.sl.XNPlug.XNPlug;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +19,7 @@ public record GetIP(XNPlug plugin) implements CommandExecutor {
         this.plugin = plugin;
 
         // 注册监听器
-        plugin.getServer().getPluginManager().registerEvents(new TellIPListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new TellIPListener(), plugin);
         // 注册命令
         Objects.requireNonNull(plugin.getCommand("getip")).setExecutor(this);
     }
@@ -42,7 +43,7 @@ public record GetIP(XNPlug plugin) implements CommandExecutor {
 
         } else if (args.length == 1) {
 
-            player = plugin.getServer().getPlayerExact(args[0]);
+            player = Bukkit.getPlayerExact(args[0]);
 
             if (player == null) {
                 sender.sendMessage("§c玩家不存在");
