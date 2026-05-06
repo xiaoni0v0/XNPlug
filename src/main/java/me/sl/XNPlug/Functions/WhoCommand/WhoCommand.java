@@ -24,6 +24,11 @@ public record WhoCommand(XNPlug plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        if (!sender.isOp()) {
+            sender.sendMessage("§e？你是 op 嘛就想看别人资料啊？");
+            return true;
+        }
+
         if (args.length == 0) {
             sender.sendMessage("§c请指定玩家");
             return true;
