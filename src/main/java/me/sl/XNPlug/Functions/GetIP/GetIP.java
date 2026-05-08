@@ -1,5 +1,6 @@
 package me.sl.XNPlug.Functions.GetIP;
 
+import me.sl.XNPlug.Utils;
 import me.sl.XNPlug.XNPlug;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -31,28 +32,8 @@ public record GetIP(XNPlug plugin) implements CommandExecutor {
             return true;
         }
 
-        Player player;
-
-        if (args.length == 0) {
-            if (!(sender instanceof Player)) {
-                sender.sendMessage("§c非玩家身份执行，请指定玩家");
-                return true;
-            }
-
-            player = (Player) sender;
-
-        } else if (args.length == 1) {
-
-            player = Bukkit.getPlayerExact(args[0]);
-
-            if (player == null) {
-                sender.sendMessage("§c玩家不存在");
-                return true;
-            }
-        } else {
-            sender.sendMessage("§c参数过多");
-            return true;
-        }
+        Player player = Utils.getOnePlayerByCommandArgs(sender, args);
+        if (player == null) return true;
 
         String msg = "§6玩家 %s 的IP信息: §a%s §a%s".formatted(
                 player.getName(),
