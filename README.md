@@ -9,6 +9,7 @@
 5. suicide
 6. lag
 7. who
+8. heal
 
 ## 软前置
 

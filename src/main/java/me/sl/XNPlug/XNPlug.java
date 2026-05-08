@@ -5,6 +5,7 @@ import me.sl.XNPlug.Functions.Afk.Afk;
 import me.sl.XNPlug.Functions.Afk.AfkExpansion;
 import me.sl.XNPlug.Functions.FlyCommand.FlyCommand;
 import me.sl.XNPlug.Functions.GetIP.GetIP;
+import me.sl.XNPlug.Functions.HealCommand.HealCommand;
 import me.sl.XNPlug.Functions.LagCommand.LagCommand;
 import me.sl.XNPlug.Functions.ListCommand.ListCommand;
 import me.sl.XNPlug.Functions.SuicideCommand.SuicideCommand;
@@ -33,6 +34,8 @@ public final class XNPlug extends JavaPlugin {
     private static LagCommand lagCommand;
     @Getter
     private static WhoCommand whoCommand;
+    @Getter
+    private static HealCommand healCommand;
 
     @Override
     public void onEnable() {
@@ -71,6 +74,9 @@ public final class XNPlug extends JavaPlugin {
 
         whoCommand = new WhoCommand(this);
         getLogger().info("XNPlug.who 已启动");
+
+        healCommand = new HealCommand(this);
+        getLogger().info("XNPlug.heal 已启动");
 
         getLogger().info("XNPlug 加载完成！");
     }

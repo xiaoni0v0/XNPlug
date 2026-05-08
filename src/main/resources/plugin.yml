@@ -38,3 +38,6 @@ commands:
   info:
     description: 查看某玩家的信息
     usage: /info <玩家名>
+  heal:
+    description: 为玩家恢复所有生命值、饱食度和饱和度
+    usage: /heal <玩家名>
