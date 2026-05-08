@@ -1,6 +1,7 @@
 package me.sl.XNPlug.Functions.SuicideCommand;
 
 import me.sl.XNPlug.XNPlug;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +25,7 @@ public record SuicideCommand(XNPlug plugin) implements CommandExecutor {
             return true;
         }
 
-        Bukkit.broadcastMessage("§6%s 结束了自己的生命。".formatted(player.getName()));
+        Bukkit.broadcast(Component.text("§6%s 结束了自己的生命。".formatted(player.getName())));
         player.setHealth(0);
 
         return true;
