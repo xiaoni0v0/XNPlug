@@ -13,7 +13,7 @@ public class TellIPListener implements Listener {
 
         // 告知所有 OP
         for (Player op : Bukkit.getOnlinePlayers()) {
-            if (op.isOp()) {
+            if (op.hasPermission("xnplug.show_getip")) {
                 op.sendMessage("§6玩家 %s 来自 §a%s".formatted(
                         player.getName(),
                         GetIP.getExactLocation(player)

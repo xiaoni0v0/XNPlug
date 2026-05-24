@@ -27,8 +27,8 @@ public record GetIP(XNPlug plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        if (!sender.isOp()) {
-            sender.sendMessage("§e？你是 op 嘛就想 getip 啊？");
+        if (!sender.hasPermission("xnplug.command.getip")) {
+            sender.sendMessage("§4？你有权限嘛就想 getip 啊？");
             return true;
         }
 
