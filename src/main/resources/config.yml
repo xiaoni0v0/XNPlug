@@ -1,13 +1,3 @@
 # 控制哪些模块启用
 modules:
-  afk: true
-  fly: true
-  list: true
   getip: true
-  suicide: true
-  lag: true
-  who: true
-  heal: true
-
-# 空闲多少秒后自动进入AFK模式
-afk-threshold-seconds: 300

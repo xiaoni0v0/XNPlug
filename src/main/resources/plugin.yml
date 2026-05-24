@@ -5,39 +5,7 @@ main: me.sl.XNPlug.XNPlug
 api-version: '1.21.8'
 load: POSTWORLD
 
-softdepend: [ PlaceholderAPI ]
-
 commands:
-  afk:
-    description: 切换 AFK 状态
-    usage: /afk
-  list:
-    description: 列出所有在线玩家
-    usage: /list
-  fly:
-    description: 让你飞起来！
-    usage: /fly
   getip:
     description: 查看玩家 IP 地址
     usage: /getip [玩家名]，若不指定则默认为你自己
-  suicide:
-    description: 自杀
-    usage: /suicide
-  lag:
-    description: 查看服务器状态
-    usage: /lag
-  gc:
-    description: 查看服务器状态
-    usage: /gc
-  who:
-    description: 查看某玩家的信息
-    usage: /who <玩家名>
-  whois:
-    description: 查看某玩家的信息
-    usage: /whois <玩家名>
-  info:
-    description: 查看某玩家的信息
-    usage: /info <玩家名>
-  heal:
-    description: 为玩家恢复所有生命值、饱食度和饱和度
-    usage: /heal <玩家名>
