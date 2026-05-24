@@ -2,6 +2,7 @@ package me.sl.XNPlug;
 
 import lombok.Getter;
 import me.sl.XNPlug.Functions.GetIP.GetIP;
+import me.sl.XNPlug.Functions.NewPlayerMessage.NewPlayerMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class XNPlug extends JavaPlugin {
@@ -13,6 +14,8 @@ public final class XNPlug extends JavaPlugin {
 
     @Getter
     private static GetIP getIP;
+    @Getter
+    private static NewPlayerMessage newPlayerMessage;
 
     @Override
     public void onEnable() {
@@ -27,6 +30,12 @@ public final class XNPlug extends JavaPlugin {
         if (getConfig().getBoolean("modules.getip")) {
             getIP = new GetIP(this);
             getLogger().info("XNPlug.getip 已启动");
+        }
+
+        if (getConfig().getBoolean("modules.newplayermessage")) {
+            newPlayerMessage = new NewPlayerMessage(this);
+            newPlayerMessage.run();
+            getLogger().info("XNPlug.newplayermessage 已启动");
         }
 
         getLogger().info("XNPlug 加载完成！");
