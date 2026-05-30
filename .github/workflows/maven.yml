@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - master
+      - mine
   pull_request:
     branches:
       - master
+      - mine
   workflow_dispatch:
 
 jobs:

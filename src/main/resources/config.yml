@@ -1,4 +1,4 @@
 # 控制哪些模块启用
 modules:
   getip: true
-  newplayermessage: true
+  newplayermessage: false
