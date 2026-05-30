@@ -3,6 +3,7 @@ package me.sl.XNPlug;
 import lombok.Getter;
 import me.sl.XNPlug.Functions.GetIP.GetIP;
 import me.sl.XNPlug.Functions.NewPlayerMessage.NewPlayerMessage;
+import me.sl.XNPlug.Functions.TpChunk.TpChunk;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class XNPlug extends JavaPlugin {
@@ -16,6 +17,8 @@ public final class XNPlug extends JavaPlugin {
     private static GetIP getIP;
     @Getter
     private static NewPlayerMessage newPlayerMessage;
+    @Getter
+    private static TpChunk tpChunk;
 
     @Override
     public void onEnable() {
@@ -36,6 +39,11 @@ public final class XNPlug extends JavaPlugin {
             newPlayerMessage = new NewPlayerMessage(this);
             newPlayerMessage.run();
             getLogger().info("XNPlug.newplayermessage 已启动");
+        }
+
+        if (getConfig().getBoolean("modules.tpchunk")) {
+            tpChunk = new TpChunk(this);
+            getLogger().info("XNPlug.tpchunk 已启动");
         }
 
         getLogger().info("XNPlug 加载完成！");

@@ -9,6 +9,9 @@ commands:
   getip:
     description: 查看玩家 IP 地址
     usage: /getip [玩家名]，若不指定则默认为你自己
+  tpchunk:
+    description: 传送自己到指定区块
+    usage: /tpchunk [chunk_x] [chunk_z]
 
 permissions:
   xnplug.command.getip:
@@ -16,6 +19,9 @@ permissions:
     default: op
   xnplug.show_getip:
     description: 可以在其他玩家进入时看到他们的 getip 信息
+    default: op
+  xnplug.command.tpchunk:
+    description: 允许使用 /tpchunk 命令
     default: op
   xnplug.newplayer.message:
     description: 是否已经同意 EULA

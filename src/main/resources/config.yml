@@ -2,3 +2,4 @@
 modules:
   getip: true
   newplayermessage: false
+  tpchunk: true
